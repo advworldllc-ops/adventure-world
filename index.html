@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adventure World | Indoor Playground</title>
+  <meta name="description" content="Adventure World is a fun, safe indoor playground for kids. Open play, birthday parties, memberships, homeschool days, and field trips." />
+
+  <style>
+    :root{
+      --bg:#f7f9ff;
+      --card:#ffffff;
+      --ink:#1a1a1a;
+      --muted:#5a6472;
+
+      --blue:#35a7ff;
+      --cyan:#00f2fe;
+      --pink:#ff4fd8;
+      --purple:#7b61ff;
+      --green:#00c853;
+      --orange:#ff9f1c;
+
+      --shadow: 0 10px 30px rgba(0,0,0,.12);
+      --shadow2: 0 18px 50px rgba(0,0,0,.16);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at 10% 10%, #ffffff 0%, var(--bg) 45%, #eef6ff 100%);
+      color:var(--ink);
+    }
+
+    /* ===== HERO ===== */
+    header{
+      position:relative;
+      overflow:hidden;
+      color:#fff;
+      text-align:center;
+      padding: 42px 16px 34px;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,.25) 0, rgba(255,255,255,0) 40%),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,.18) 0, rgba(255,255,255,0) 45%),
+        linear-gradient(135deg, var(--blue), var(--cyan));
+    }
+
+    /* dotted comic texture */
+    header::before{
+      content:"";
+      position:absolute; inset:0;
+      background-image:
+        radial-gradient(rgba(255,255,255,.22) 1px, transparent 1px);
+      background-size: 14px 14px;
+      opacity:.35;
+      pointer-events:none;
+    }
+
+    /* floating stars */
+    .sparkle{
+      position:absolute;
+      width:10px; height:10px;
+      background:rgba(255,255,255,.9);
+      clip-path: polygon(50% 0%, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 38%);
+      opacity:.7;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,.25));
+      animation: floaty 5.2s ease-in-out infinite;
+    }
+    .sparkle.s1{ top:22%; left:8%; transform:scale(1.2); animation-duration:6s; }
+    .sparkle.s2{ top:14%; right:10%; transform:scale(.9); animation-duration:5.3s; }
+    .sparkle.s3{ bottom:20%; left:14%; transform:scale(.8); animation-duration:4.8s; }
+    .sparkle.s4{ bottom:18%; right:14%; transform:scale(1.05); animation-duration:6.4s; }
+
+    @keyframes floaty{
+      0%,100%{ transform: translateY(0) rotate(0deg) scale(1); }
+      50%{ transform: translateY(-10px) rotate(8deg) scale(1.03); }
+    }
+
+    .logo{
+      width: 220px;        /* BIGGER LOGO */
+      max-width: 60vw;
+      margin: 0 auto 10px;
+      display:block;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.25));
+      animation: pop 900ms ease-out both;
+    }
+    @keyframes pop{
+      from{ transform: translateY(-8px) scale(.95); opacity:0; }
+      to{ transform: translateY(0) scale(1); opacity:1; }
+    }
+
+    .title{
+      margin: 8px 0 0;
+      font-size: clamp(2.1rem, 4vw, 3.2rem);
+      letter-spacing: .5px;
+      text-shadow: 0 8px 18px rgba(0,0,0,.25);
+    }
+    .subtitle{
+      margin: 10px 0 16px;
+      font-size: 1.05rem;
+      opacity:.95;
+    }
+
+    .navBtns{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+      margin-top: 10px;
+      padding: 0 10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:0;
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-decoration:none;
+      font-weight: 800;
+      color:#fff;
+      min-width: 170px;
+      box-shadow: 0 12px 24px rgba(0,0,0,.18);
+      transform: translateZ(0);
+      transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+      user-select:none;
+    }
+    .btn:hover{
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 16px 34px rgba(0,0,0,.22);
+      filter: brightness(1.02);
+    }
+    .btn:active{ transform: translateY(0) scale(.99); }
+
+    .bParty{ background: linear-gradient(135deg, var(--purple), #4d9bff); }
+    .bWaiver{ background: linear-gradient(135deg, var(--green), #13e2a7); }
+    .bDecor{ background: linear-gradient(135deg, var(--pink), #ff9f1c); }
+    .bPack{  background: linear-gradient(135deg, #ff9f1c, #ff4fd8); }
+    .bFb{    background: linear-gradient(135deg, #1877f2, #00c2ff); }
+
+    /* ===== LAYOUT ===== */
+    .container{
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 28px 14px 60px;
+    }
+    .card{
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin: 16px 0;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,.04);
+    }
+    .card h2{
+      margin: 0 0 10px;
+      font-size: 1.55rem;
+      letter-spacing: .3px;
+      color: #0f5bff;
+      text-shadow: 0 2px 0 rgba(255,255,255,.4);
+    }
+    .card p, .card li{ color: var(--muted); }
+
+    /* ===== MEDIA sizing fixes ===== */
+    .mediaWrap{
+      width:100%;
+      max-width: 760px;      /* keeps things from getting gigantic */
+      margin: 12px auto 0;
+    }
+
+    /* Videos: responsive, not too tall */
+    .videoBox{
+      width:100%;
+      border-radius: 16px;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      border: 2px solid rgba(0,0,0,.06);
+      background:#000;
+    }
+    video{
+      width:100%;
+      height:auto;
+      display:block;
+      max-height: 430px;      /* KEY: stops super tall videos */
+      object-fit: contain;    /* don’t crop */
+      background:#000;
+    }
+
+    /* Flyers / posters: fit nicely inside card */
+    .flyer{
+      width:100%;
+      height:auto;
+      max-height: 520px;       /* KEY: stops giant posters */
+      object-fit: contain;     /* no cropping */
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      border: 2px solid rgba(0,0,0,.06);
+      background:#fff;
+      cursor: zoom-in;
+      display:block;
+      margin: 10px auto 0;
+    }
+
+    /* Photo galleries */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .thumb{
+      width:100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      border: 2px solid rgba(0,0,0,.06);
+      cursor: zoom-in;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .thumb:hover{
+      transform: translateY(-3px);
+      box-shadow: var(--shadow2);
+    }
+
+    /* Floating Book Now button */
+    .floatBook{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 50;
+      padding: 13px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ff4fd8, #ff9f1c);
+      color:#fff;
+      font-weight: 900;
+      text-decoration:none;
+      box-shadow: 0 16px 40px rgba(0,0,0,.25);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      animation: bob 2.8s ease-in-out infinite;
+    }
+    @keyframes bob{
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(-6px); }
+    }
+
+    footer{
+      text-align:center;
+      padding: 18px 12px;
+      color:#7b8596;
+      font-size:.95rem;
+    }
+
+    /* Modal (click to enlarge) */
+    .modal{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.72);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index: 999;
+      padding: 18px;
+    }
+    .modal.open{ display:flex; }
+    .modalContent{
+      max-width: min(1100px, 96vw);
+      max-height: 90vh;
+      border-radius: 16px;
+      overflow:hidden;
+      box-shadow: 0 22px 70px rgba(0,0,0,.45);
+      background:#000;
+      position:relative;
+    }
+    .modalContent img{
+      width:100%;
+      height:auto;
+      display:block;
+      max-height: 90vh;
+      object-fit: contain;
+      background:#000;
+    }
+    .close{
+      position:absolute;
+      top:10px;
+      right:10px;
+      background: rgba(255,255,255,.9);
+      border:0;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 900;
+      cursor:pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<header id="top">
+  <span class="sparkle s1"></span>
+  <span class="sparkle s2"></span>
+  <span class="sparkle s3"></span>
+  <span class="sparkle s4"></span>
+
+  <!-- LOGO FILE -->
+  <img class="logo" src="logo.png.png" alt="Adventure World Logo" />
+
+  <h1 class="title">Adventure World</h1>
+  <p class="subtitle">Where Little Adventures Begin!</p>
+
+  <div class="navBtns">
+    <a class="btn bParty" href="https://adventure-world-109863.square.site/" target="_blank">🎉 Book a Party</a>
+    <a class="btn bWaiver" href="https://docs.google.com/forms/d/e/1FAIpQLSct9CF7A64Cr_8Y3STeKP6oIO-VKsSKHgS_mrDYEzb0YY4LOA/viewform" target="_blank">✅ Fill Out Waiver</a>
+    <a class="btn bDecor" href="#decorations">✨ Decorations</a>
+    <a class="btn bPack" href="#packages">🦸 Party Packages</a>
+    <a class="btn bFb" href="https://www.facebook.com/profile.php?id=61559895189945" target="_blank">📘 Facebook</a>
+  </div>
+</header>
+
+<a class="floatBook" href="https://adventure-world-109863.square.site/" target="_blank">🧡 Book Now</a>
+
+<div class="container">
+
+  <!-- VIDEO -->
+  <div class="card" id="gallery">
+    <h2>See Our Play Area</h2>
+    <p>Take a quick look inside Adventure World and see where the fun happens!</p>
+
+    <div class="mediaWrap">
+      <div class="videoBox">
+        <!-- VIDEO FILE -->
+        <video controls preload="metadata">
+          <source src="play-area.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <p style="margin-top:10px; font-size:.92rem;">
+      🎥 If the video doesn’t play, double-check the file is named exactly <b>play-area.mp4</b> and is in the same folder as <b>index.html</b>.
+    </p>
+  </div>
+
+  <!-- PACKAGES -->
+  <div class="card" id="packages">
+    <h2>Adventure Party Packages</h2>
+    <p style="font-weight:800; color:#2b2b2b;">Click the flyer to enlarge:</p>
+
+    <div class="mediaWrap">
+      <img class="flyer" src="party-packages.jpg" alt="Adventure Party Packages Flyer" data-zoom />
+    </div>
+
+    <p style="margin-top:10px;">Want to book? Tap <b>Book Now</b> or use the <b>Book a Party</b> button above.</p>
+  </div>
+
+  <!-- DECORATIONS -->
+  <div class="card" id="decorations">
+    <h2>Decoration Options</h2>
+    <ul>
+      <li><b>Balloon Garland</b> — $75</li>
+      <li><b>Balloon Garland with Three Arches</b> — $100</li>
+      <li><b>Balloon Table Centerpiece</b> — $8</li>
+      <li><b>Custom Banner</b> — $35</li>
+    </ul>
+
+    <h3 style="margin:18px 0 8px; color:#ff4fd8;">Party Add-Ons Flyer</h3>
+    <div class="mediaWrap">
+      <img class="flyer" src="party-addons.jpg" alt="Party Add-Ons Flyer" data-zoom />
+    </div>
+
+    <h3 style="margin:22px 0 10px; color:#ff4fd8;">Decoration Gallery</h3>
+    <p>Examples of party setups & balloon designs:</p>
+
+    <div class="grid">
+      <!-- Save your decoration photos with these names (or change the src to match your names) -->
+      <img class="thumb" src="decor-1.jpg" alt="Decoration example 1" data-zoom />
+      <img class="thumb" src="decor-2.jpg" alt="Decoration example 2" data-zoom />
+      <img class="thumb" src="decor-3.jpg" alt="Decoration example 3" data-zoom />
+      <img class="thumb" src="decor-4.jpg" alt="Decoration example 4" data-zoom />
+    </div>
+
+    <p style="margin-top:10px; font-size:.92rem;">
+      ✅ If your decoration photos have different names, tell me the exact names and I’ll update them for you.
+    </p>
+  </div>
+
+  <!-- MEMBERSHIPS / HOMESCHOOL / FIELD TRIPS -->
+  <div class="card" id="specials">
+    <h2>Specials & Programs</h2>
+    <p>Great options for families, homeschool groups, and schools!</p>
+
+    <div class="grid">
+      <div>
+        <h3 style="margin:0 0 8px; color:#0f5bff;">Memberships</h3>
+        <img class="flyer" src="membership.jpg" alt="Memberships Flyer" data-zoom />
+      </div>
+
+      <div>
+        <h3 style="margin:0 0 8px; color:#0f5bff;">Homeschool Days</h3>
+        <img class="flyer" src="homeschool.jpg" alt="Homeschool Days Flyer" data-zoom />
+      </div>
+    </div>
+
+    <h3 style="margin:22px 0 8px; color:#0f5bff;">Field Trips</h3>
+    <div class="mediaWrap">
+      <img class="flyer" src="field-trips.jpg" alt="Field Trips Flyer" data-zoom />
+    </div>
+  </div>
+
+  <!-- HOURS -->
+  <div class="card" id="hours">
+    <h2>Hours</h2>
+    <p>
+      <b>Open Play</b><br />
+      Tuesday, Thursday & Friday — 11:00 AM – 8:00 PM<br />
+      <em>👉 Please check our Facebook page for any Friday hour changes due to private events.</em><br /><br />
+      <b>Private Parties Only</b><br />
+      Saturday & Sunday
+    </p>
+  </div>
+
+  <!-- PRICING -->
+  <div class="card" id="pricing">
+    <h2>Open Play Pricing</h2>
+    <p>
+      Ages 2 & under: <b>$5</b><br />
+      Ages 3 & up: <b>$15</b><br />
+      <em>Unlimited play time during open play hours</em>
+    </p>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="card" id="contact">
+    <h2>Contact Us</h2>
+    <p>
+      📍 <b>Location:</b><br />
+      500 S Montgomery Suite 101<br />
+      Sheffield, AL 35660<br /><br />
+      📞 <b>Phone:</b> 256-402-9662<br />
+      📧 <b>Email:</b> advworldllc@gmail.com
+    </p>
+    <a class="btn bParty" href="tel:12564029662">📞 Call to Book</a>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Adventure World. All rights reserved.
+</footer>
+
+<!-- MODAL for zoom -->
+<div class="modal" id="modal">
+  <div class="modalContent">
+    <button class="close" id="closeBtn">Close ✖</button>
+    <img id="modalImg" alt="Enlarged image" />
+  </div>
+</div>
+
+<script>
+  // Click-to-enlarge for any image with data-zoom
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modalImg');
+  const closeBtn = document.getElementById('closeBtn');
+
+  document.querySelectorAll('[data-zoom]').forEach(el => {
+    el.addEventListener('click', () => {
+      modalImg.src = el.getAttribute('src');
+      modal.classList.add('open');
+    });
+  });
+
+  function closeModal(){
+    modal.classList.remove('open');
+    modalImg.src = '';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if(e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeModal();
+  });
+</script>
+
+</body>
+</html>
