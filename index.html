@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,166 +6,173 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Adventure World | Indoor Playground</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  background:#f7fbff;
-  color:#1b1b1b;
-}
 html{scroll-behavior:smooth}
+body{margin:0;font-family:'Fredoka',Arial,sans-serif;background:#f3f9ff;color:#1b1b1b}
 
 header{
   position:relative;
   text-align:center;
-  padding:45px 15px 35px;
+  padding:45px 15px 45px;
   color:white;
-  background:linear-gradient(135deg,#22a7ff,#00e5ff);
+  background:linear-gradient(135deg,#0099ff,#00e5ff,#7b61ff);
   overflow:hidden;
 }
 header:before{
   content:"";
   position:absolute;
   inset:0;
-  background-image:radial-gradient(rgba(255,255,255,.25) 1px,transparent 1px);
-  background-size:16px 16px;
+  background-image:radial-gradient(rgba(255,255,255,.35) 2px,transparent 2px);
+  background-size:22px 22px;
   pointer-events:none;
 }
-header > *{
-  position:relative;
-  z-index:2;
-}
+header>*{position:relative;z-index:2}
+
 .logo{
-  width:240px;
-  max-width:70vw;
-  filter:drop-shadow(0 10px 18px rgba(0,0,0,.25));
+  width:300px;
+  max-width:80vw;
+  filter:drop-shadow(0 12px 18px rgba(0,0,0,.35));
 }
+
 h1{
-  font-size:3rem;
-  margin:8px 0 5px;
+  font-family:'Baloo 2',cursive;
+  font-size:4rem;
+  margin:5px 0;
+  text-shadow:4px 4px 0 rgba(0,0,0,.15);
 }
+
 .subtitle{
-  font-size:1.1rem;
-  margin-bottom:18px;
+  font-size:1.3rem;
+  font-weight:700;
+  margin:8px 0 20px;
 }
+
+.comicTag{
+  display:inline-block;
+  background:#fff;
+  color:#ff2ba6;
+  padding:10px 18px;
+  border-radius:999px;
+  font-family:'Baloo 2',cursive;
+  font-size:1.2rem;
+  transform:rotate(-2deg);
+  box-shadow:0 8px 20px rgba(0,0,0,.2);
+  margin-bottom:16px;
+}
+
 .navBtns{
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
-  gap:10px;
-  position:relative;
-  z-index:5;
+  gap:12px;
 }
+
 .btn{
   display:inline-flex;
-  align-items:center;
   justify-content:center;
-  padding:12px 18px;
+  align-items:center;
+  padding:13px 20px;
   border-radius:999px;
   text-decoration:none;
   font-weight:900;
   color:white;
-  min-width:155px;
-  box-shadow:0 12px 24px rgba(0,0,0,.18);
-  position:relative;
-  z-index:10;
-  pointer-events:auto;
+  min-width:160px;
+  box-shadow:0 12px 25px rgba(0,0,0,.2);
 }
-.bParty{background:linear-gradient(135deg,#7b61ff,#319bff)}
+.btn:hover{transform:translateY(-2px)}
+.bParty{background:linear-gradient(135deg,#7b61ff,#2196f3)}
 .bWaiver{background:linear-gradient(135deg,#00c853,#00e676)}
 .bDecor{background:linear-gradient(135deg,#ff4fd8,#ff9f1c)}
 .bPack{background:linear-gradient(135deg,#ff9f1c,#ff4fd8)}
-.bFb{background:linear-gradient(135deg,#1877f2,#00c2ff)}
-.bMsg{background:linear-gradient(135deg,#0084ff,#00c6ff)}
+.bFb,.bMsg{background:linear-gradient(135deg,#1877f2,#00c2ff)}
 
 .floatBook,.floatMsg{
   position:fixed;
   right:18px;
   z-index:100;
-  padding:13px 18px;
+  padding:14px 18px;
   border-radius:999px;
   color:white;
   text-decoration:none;
   font-weight:900;
   box-shadow:0 16px 40px rgba(0,0,0,.25);
 }
-.floatBook{
-  bottom:18px;
-  background:linear-gradient(135deg,#ff4fd8,#ff9f1c);
-}
-.floatMsg{
-  bottom:78px;
-  background:linear-gradient(135deg,#1877f2,#00c2ff);
-}
+.floatBook{bottom:18px;background:linear-gradient(135deg,#ff4fd8,#ff9f1c)}
+.floatMsg{bottom:78px;background:linear-gradient(135deg,#1877f2,#00c2ff)}
 
-.container{
-  max-width:1050px;
-  margin:auto;
-  padding:28px 14px 60px;
-}
+.container{max-width:1050px;margin:auto;padding:28px 14px 60px}
+
 .card{
   background:white;
-  border-radius:20px;
-  padding:22px;
-  margin:18px 0;
-  box-shadow:0 10px 30px rgba(0,0,0,.12);
+  border-radius:24px;
+  padding:24px;
+  margin:22px 0;
+  box-shadow:0 12px 35px rgba(0,0,0,.12);
+  border:4px solid rgba(0,153,255,.08);
 }
+
 h2{
+  font-family:'Baloo 2',cursive;
   color:#0f5bff;
+  font-size:2rem;
   margin-top:0;
-  font-size:1.7rem;
 }
+
 h3{
+  font-family:'Baloo 2',cursive;
   color:#ff4fd8;
+  font-size:1.45rem;
 }
-.mediaWrap{
-  max-width:720px;
-  margin:12px auto;
-}
+
+.mediaWrap{max-width:680px;margin:14px auto}
+
 video{
   width:100%;
   height:auto;
-  max-height:380px;
+  max-height:360px;
   object-fit:contain;
   background:#000;
-  border-radius:16px;
+  border-radius:18px;
 }
+
 .flyer{
   width:100%;
-  max-height:460px;
+  max-height:420px;
   object-fit:contain;
-  border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,.12);
+  border-radius:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
   background:white;
 }
+
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:14px;
-  margin-top:14px;
+  gap:16px;
+  margin-top:16px;
 }
+
 .thumb{
   width:100%;
   height:210px;
   object-fit:cover;
-  border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,.12);
+  border-radius:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
 }
+
 .twoCol{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:18px;
+  gap:20px;
 }
 @media(max-width:800px){
   .twoCol{grid-template-columns:1fr}
-  h1{font-size:2.3rem}
+  h1{font-size:2.7rem}
 }
-footer{
-  text-align:center;
-  padding:20px;
-  color:#6b7280;
-}
+
+footer{text-align:center;padding:22px;color:#6b7280;font-weight:700}
 </style>
 </head>
 
@@ -174,7 +182,8 @@ footer{
 <a class="floatBook" href="https://adventure-world-109863.square.site/" target="_blank">🧡 Book Now</a>
 
 <header>
-  <img class="logo" src="logo.png" alt="Adventure World Logo">
+  <img class="logo" src="./logo.png" onerror="this.onerror=null;this.src='./logo.png.png';" alt="Adventure World Logo">
+  <div class="comicTag">💥 Play • Party • Explore 💥</div>
   <h1>Adventure World</h1>
   <p class="subtitle">Where Little Adventures Begin!</p>
 
@@ -233,14 +242,11 @@ footer{
 
 <div class="card" id="packages">
   <h2>Adventure Party Packages</h2>
-  <p><b>Click the flyer to view larger.</b></p>
   <div class="mediaWrap">
     <a href="party-packages.jpg" target="_blank">
       <img class="flyer" src="party-packages.jpg" alt="Adventure Party Packages">
     </a>
   </div>
-  <p>Ready to celebrate? Book online or message us on Facebook!</p>
-  <a class="btn bParty" href="https://adventure-world-109863.square.site/" target="_blank">🎉 Book a Party</a>
 </div>
 
 <div class="card" id="decorations">
@@ -271,7 +277,7 @@ footer{
   </div>
 </div>
 
-<div class="card" id="specials">
+<div class="card">
   <h2>Specials & Programs</h2>
 
   <h3>Memberships</h3>
@@ -289,7 +295,7 @@ footer{
   </div>
 </div>
 
-<div class="card" id="contact">
+<div class="card">
   <h2>Contact Us</h2>
   <p>
     📍 <b>Location:</b><br>
@@ -298,12 +304,6 @@ footer{
     📞 <b>Phone:</b> 256-402-9662<br>
     📧 <b>Email:</b> advworldllc@gmail.com
   </p>
-
-  <div class="navBtns">
-    <a class="btn bParty" href="tel:12564029662">📞 Call</a>
-    <a class="btn bMsg" href="https://m.me/61559895189945" target="_blank">💬 Message Us</a>
-    <a class="btn bFb" href="https://www.facebook.com/profile.php?id=61559895189945" target="_blank">📘 Facebook</a>
-  </div>
 </div>
 
 </div>
@@ -314,3 +314,4 @@ footer{
 
 </body>
 </html>
+```
